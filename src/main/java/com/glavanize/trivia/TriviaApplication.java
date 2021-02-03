@@ -1,4 +1,4 @@
-package com.glavanize.trivia.trivia;
+package com.glavanize.trivia;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
