@@ -1,4 +1,4 @@
-package com.glavanize.trivia;
+package com.glavanize.trivia.Controller;
 
 
 import org.junit.jupiter.api.Test;
@@ -21,11 +21,15 @@ public class TriviaControllerTest {
     MockMvc mockMvc;
 
     @Test
-    public void getSingleQuestion() throws Exception {
-        mockMvc.perform(get("/api/v1/trivia/questions/1"))
+    public void getQuestions() throws Exception {
+        mockMvc.perform(get("/api/v1/trivia/questions/2"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("[0].id").exists())
-                 .andExpect(jsonPath("[1].id").doesNotExist());
+                .andExpect(jsonPath("[1].id").exists())
+                .andExpect(jsonPath("$[0].answerList[0]").exists())
+                .andExpect(jsonPath("$[0].answerList[1]").exists())
+                .andExpect(jsonPath("$[0].answerList[2]").exists())
+                .andExpect(jsonPath("$[0].answerList[3]").doesNotExist());;
 
     }
 }
