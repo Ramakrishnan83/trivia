@@ -18,6 +18,8 @@ public class TriviaController {
     @Autowired
     TriviaService triviaService;
 
+    // TODO: Better not to use field injection/autowired annotation, instead use constructor injection
+
     @GetMapping("{count}")
     public  List<Question> getAllQuestions(@PathVariable Integer count) {
         return triviaService.fetchAllQuestions(count);

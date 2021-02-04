@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 @Service
 public class TriviaService {
 
+    // TODO: Autowired can be removed here, since you have a constructor and therefore use dependency injection
+    //  through constructor injection
     @Autowired
     QuestionRepository questionRepository;
 
