@@ -1,6 +1,7 @@
 package com.glavanize.trivia.Controller;
 
 
+import com.glavanize.trivia.Repository.QuestionRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -23,6 +24,18 @@ public class TriviaControllerTest {
     @Autowired
     MockMvc mockMvc;
 
+    @Autowired
+    QuestionRepository questionRepository;
+
+    @Test
+    public void getNoQuestions() throws Exception {
+        questionRepository.deleteAll();
+        mockMvc.perform(get("/api/v1/trivia/questions/2"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("[0].id").doesNotExist());
+
+    }
+
     @Test
     public void getQuestions() throws Exception {
         mockMvc.perform(get("/api/v1/trivia/questions/2"))
@@ -34,5 +47,11 @@ public class TriviaControllerTest {
                 .andExpect(jsonPath("$[0].answerList[2]").exists())
                 .andExpect(jsonPath("$[0].answerList[3]").doesNotExist());;
 
+    }
+
+    @Test
+    public void addQuestion() throws Exception {
+        mockMvc.perform(post("/api/v1/trivia/questions"))
+                .andExpect(status().isOk());
     }
 }
