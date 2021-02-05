@@ -24,4 +24,7 @@ public class TriviaService {
         return finalOutput;
     }
 
+    public Question addQuestion(Question question) {
+        return questionRepository.save(question);
+    }
 }

@@ -3,6 +3,7 @@ package com.glavanize.trivia.Controller;
 import com.glavanize.trivia.Entity.Question;
 import com.glavanize.trivia.Service.TriviaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -21,8 +22,9 @@ public class TriviaController {
     }
 
     @PostMapping
-    public Question addQuestion(){
-        return new Question();
+    @ResponseStatus(HttpStatus.CREATED)
+    public Question addQuestion(@RequestBody Question question){
+        return triviaService.addQuestion(question);
     }
 
 }

@@ -20,7 +20,7 @@ public class Answer {
     private Long question_id;
     private String choice;
     private String text;
-    private Boolean Correct;
+    private Boolean correct;
 
     }
 
